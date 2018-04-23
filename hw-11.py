@@ -39,7 +39,7 @@ def colorswap():
     img[:,:,1]=blue
     img[:,:,2]=red
     sm.imsave("colorswap.png", img)
-colorswap()
+# colorswap()
 
 ##
 # Part 2
@@ -53,7 +53,54 @@ colorswap()
 # The first distribution should have parameters (2,3). 
 # The second distribution should have parameters (1,0.05). 
 # Generate histograms for each distribution and plot them in the same graph. 
-
+import math
+def histooo():
+    n = 300
+    normaldist1 = np.random.normal(2, 3, n)
+    normaldist2 = np.random.normal(1, 0.05, n)
+    hist1 = np.histogram(normaldist1, bins=[-math.inf, -3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, math.inf], range=(min(normaldist1), max(normaldist1)))
+    hist2 = np.histogram(normaldist2, bins=[-math.inf, -3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, math.inf], range=(min(normaldist2), max(normaldist2)))
+    print("hist1")
+    for key, value in zip(hist1[0], hist1[1]):
+        print("{}, {}".format(key,value))
+    print("hist2")
+    for key, value in zip(hist2[0], hist2[1]):
+        print("{}, {}".format(key,value))
 
 # 2	Problem 
 # Using the same seed, generate two vectors of random integers that are the same length. Subtract one vector from the other to confirm that the sequences are the same. 
+def arr2():
+    arr1 = np.random.rand(9)
+    arr2 = np.random.rand(9)
+    print(arr2-arr1)
+
+
+# Worksheet 2 
+ 
+# 1	Problem 
+# Generate a sequence of DNA that is 100 bases long 
+# using random integers 
+# as in the video example.  
+def foogihab():
+    abet = ('A', 'C', 'G', 'T')
+    nms = np.random.randint(0,4,100)
+    dnalist = np.take(abet,nms)
+    print("".join(dnalist))
+
+# 2	Problem 
+# In the second video, the code is presented to generate a deck of cards. 
+# Add your own code to deal the deck to four players. 
+# You will have to ensure that only one card is uniquely dealt to a single player. 
+# Hint: investigate the options in numpy.random.choice() to sample your deck of cards without replacement. 
+nos = "A 2 3 4 5 6 7 8 9 10 J Q K".split(" ")
+suits = ['spades', 'diamonds','clubs','hearts']
+cards = []
+for i in nos:
+    for j in suits:
+        cards.append(i + ' ' + j)
+for i in "1234":
+    print("player "+i)
+    deck = []
+    for car in cards:
+        deck.append(np.random.choice(cards, replace=False))
+    print(deck)
